@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+    <head>
+        <link rel="stylesheet" href="/allproblem.css">
+        <title>Home</title>
+        <script src="/js/home.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <% data.forEach(function(data){ %>
+                <h2>
+                    <%= data.problemName %>
+                </h2>
+                <p>
+                    <%= data.body %>
+                </p>
+                <% if(isLoggedIn) {%>
+                    <a href="/userDefinedTags/<%= data._id %>">Read More...</a>
+                    <form method="POST" autocomplete="off" action="/addUserDefinedTag/<%= data._id %>">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                        <div class="addingtag">
+                            <input type="text" name="newTag" class="addtag" placeholder="Add custom tag" />
+                            <button type="submit" class="btn btn-md btn-outline-secondary addtagbtn"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </form>
+                <% } %>
+            <% }) %>
+        </div>
+    </body>
+
+    </html>

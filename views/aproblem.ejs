@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+    <head>
+        <link rel="stylesheet" href="/allproblem.css">
+        <title><%= problem.problemName %></title>
+        <script src="/js/home.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>
+                <%= problem.problemName %>
+            </h2>
+            <p>
+                <%= problem.body %>
+            </p>
+            <h6>Tags: 
+                <% tags.forEach(function(tag){ %>
+                    <span class="badge badge-pill badge-<%= randomTagcolor[Math.floor(Math.random() * randomTagcolor.length)] %>"><%= tag %></span>
+                <% }) %>
+            </h6>
+            <% if(userTags !== null) {%>
+            <h6>User Defined Tags: 
+                <% userTags.forEach(function(utag){ %>
+                    <span class="badge badge-pill badge-<%= randomTagcolor[Math.floor(Math.random() * randomTagcolor.length)] %>"><%= utag %></span>
+                <% }) %>
+            </h6>
+            <% } %>
+
+            <% if(isLoggedIn) {%>
+                <form method="POST" autocomplete="off" action="/addUserDefinedTag/<%= problem._id %>">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <div class="addingtag">
+                        <input type="text" name="newTag" class="addtag" placeholder="Add custom tag" />
+                        <button type="submit" class="btn btn-md btn-outline-secondary addtagbtn"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </form>
+            <% } %>
+        </div>
+    </body>
+
+    </html>

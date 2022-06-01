@@ -1,0 +1,101 @@
+<%- include('partials/header') %>
+
+    <head>
+        <link rel="stylesheet" href="/home.css">
+        <title>Home</title>
+        <script src="/js/home.js"></script>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <!-- <form method="POST" action="/getAllProblems">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <h1>Author</h1>
+                <select multiple id="author" name="author">
+                    <% authorTags.forEach(function(tagObj) { %>
+                        <option> <%= tagObj.tag %> </option>
+                    <% }) %>
+                </select>
+
+                <h1>Concepts</h1>
+                <select multiple id="concept" name="concept">
+                    <% actualTags.forEach(function(tagObj) { %>
+                        <option> <%= tagObj.tag %> </option>
+                    <% }) %>
+                </select>
+                
+                <% if(userDefinedTags) { %>
+                    <h1>UserDefinedTags</h1>
+                    <select multiple id="userDefined" name="userDefined">
+                        <% userDefinedTags.forEach(function(tag) { %>
+                            <option> <%= tag %> </option>
+                        <% }) %>
+                    </select>
+                <% } %>
+                <h1 id="title"></h1>
+                <button type="submit">Submit</button>
+            </form> -->
+            <form method="POST" action="/getAllProblems">
+            <div class="selectedTags">Selected Tags: </div>
+            <button class="btn btn-success my-2 my-sm-0 applyTags" type="submit">Apply Tags</button>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <div class="row">
+                <div class="col-sm author tag-grp">
+                    <div class="group">
+                        <div class="grp-avatar"><i class="fa-solid fa-at"></i></div>
+                        <div class="grp-title">Author</div>
+                    </div>
+                    <% authorTags.forEach(function(tagObj) { %>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= tagObj.tag %> 
+                                    <input type="checkbox" name="<%= tagObj.tag %>" class="tags">
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><i class="fa-solid fa-user"></i> Problems</h6>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                <div class="col-sm concepts tag-grp">
+                    <div class="group">
+                        <div class="grp-avatar"><i class="fa-solid fa-at"></i></div>
+                        <div class="grp-title">Concepts</div>
+                    </div>
+                    <% actualTags.forEach(function(tagObj) { %>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= tagObj.tag %> 
+                                    <input type="checkbox" name="<%= tagObj.tag %>" class="tags"> 
+                                </h5>
+                                <h6 class="card-subtitle mb-2 text-muted"><i class="fa-solid fa-user"></i> Problems</h6>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+                <% if(userDefinedTags) { %>
+                <div class="col-sm userDefined tag-grp">
+                    <div class="group">
+                        <div class="grp-avatar"><i class="fa-solid fa-at"></i></div>
+                        <div class="grp-title">User-defined</div>
+                    </div>
+                    <% userDefinedTags.forEach(function(tag) { %>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"> 
+                                <%= tag %> 
+                                <input type="checkbox" name="<%= tag %>" class="tags">
+                            </h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><i class="fa-solid fa-user"></i> Problems</h6>
+                        </div>
+                    </div>
+                    <% }) %>
+                </div>
+                <% } %>
+            </div>
+            </form>
+        </div>
+    </body>
+
+    </html>
