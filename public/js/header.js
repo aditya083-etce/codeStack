@@ -36,10 +36,3 @@ function searchHandler() {
     req.open("GET", "http://localhost:3000/searchTag?value=" + text, true);
     req.send();
 }
-
-$(document).ready(function() {
-    $('.mySelect').toggle();
-    $(document).click(function(e) {
-  $('.mySelect').attr('size',0);
-});
-});

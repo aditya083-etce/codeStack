@@ -34,3 +34,7 @@ const checkHandler = () => {
         document.getElementById("selectedTags").innerHTML = selectedTgs;
     }
 }
+
+const problemContent = document.getElementById("problemContent").innerHTML;
+console.log(problemContent);
+
