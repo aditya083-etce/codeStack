@@ -33,6 +33,6 @@ function searchHandler() {
             }
         }
     }
-    req.open("GET", "http://localhost:3000/searchTag?value=" + text, true);
+    req.open("GET", "https://code-fetcher-app.herokuapp.com/searchTag?value=" + text, true);
     req.send();
 }
