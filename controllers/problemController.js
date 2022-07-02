@@ -53,6 +53,7 @@ module.exports.getAllProblems = async (req, res) => {
                     },
                 ],
             });
+            
             res.render("allproblem", {data: problems});
         } catch (err) {
             res.status(500).send({ err: "Error fetching problems" });

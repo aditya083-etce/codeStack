@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -11,12 +12,10 @@ const app = express();
 const authRoutes = require('./routes/auth');
 const problemRoutes = require('./routes/problem');
 const tagRoutes = require('./routes/tags');
-// mongodb://localhost:27017/codeStackApp
-// mongodb+srv://mukul:mukul@mukul.lcc65.mongodb.net/codechef?retryWrites=true&w=majority
-const MONGODB_URI = "mongodb://localhost:27017/codeStackApp";
+
+const MONGODB_URI = process.env.DATABASE;
 
 const store = new MongoDBStore({uri: MONGODB_URI, collection: 'sessions'})
-
 
 let csrfProtection = csrf()
 
@@ -52,10 +51,13 @@ app.get("/error", (req, res) => {
     res.render("error.ejs", {code: "404"});
 });
 
-app.listen(3000, () => {
-    console.log("Listening on port 3000");
-});
-
-mongoose.connect(MONGODB_URI, () => {
-    console.log("connected to db");
+mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
+.then(() => {
+    console.log('connected to dB');
+})
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Listening in ${PORT}`));

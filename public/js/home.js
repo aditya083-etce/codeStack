@@ -35,6 +35,12 @@ const checkHandler = () => {
     }
 }
 
-const problemContent = document.getElementById("problemContent").innerHTML;
-console.log(problemContent);
+// const convertHTML = () => {
+
+//     const problemContent = document.getElementById("problemData").innerHTML;
+//     document.getElementById("problemContent"),innerHTML = problemContent;
+// }
+
+// console.log(problemContent);
+
 

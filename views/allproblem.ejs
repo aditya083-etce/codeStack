@@ -13,7 +13,9 @@
                     <%= data.problemName %>
                 </h2>
                 <p id="problemContent">
-                    <%= data.body %>
+                    <div id="problemData">
+                        <%= data.body %> 
+                    </div>
                 </p>
                 <% if(isLoggedIn) {%>
                     <a href="/userDefinedTags/<%= data._id %>">Read More...</a>
